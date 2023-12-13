@@ -70,11 +70,13 @@ class Title_Detection_Model:
         _logger.info(" dataset loaded")
 
         _logger.info("creatng feature datasets")
+
         # create feature sets
         train_feature_dataset = self.create_feature_dataset(dataset_dict["train"])
         test_feature_dataset = self.create_feature_dataset(dataset_dict["test"])
 
         _logger.info("training mlp")
+
         # train mlp
         trained_model = self.train_MLP(train_feature_dataset)
 
@@ -82,10 +84,10 @@ class Title_Detection_Model:
         dump(trained_model, 'models/mlp_ensemble.joblib')
 
         _logger.info("evaluating")
+
         #evaluate model
         eval_result = self.evaluate_model(test_feature_dataset, trained_model)
         _logger.info(str(eval_result))
-        print(eval_result)
 
         return trained_model
 
