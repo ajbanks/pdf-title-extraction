@@ -8,8 +8,6 @@ class PDF_Loc_Feature_Extractor(Extractor):
         self.extractor_label = "PDF_Loc_Feature_Extractor"
 
     def extract_feature(self, record: Dict) -> np.array:
-        "convertjust returns the location features atm"
-
-        feature_dict = {"Left": 0, "Right": 0, "Top": 0, "Bottom": 0}
+        """just returns the location features as a numpy array """
 
         return np.array([record["Left"], record["Right"], record["Top"], record["Bottom"]])

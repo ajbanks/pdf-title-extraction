@@ -9,7 +9,8 @@ class Binary_Feature_Extractor(Extractor):
         self.feature_labels = ["IsBold", "IsItalic", "IsUnderlined"]
 
     def extract_feature(self, record: Dict) -> np.array:
-        "returns the length of the text"
+        """Converts the text format feeatures into numerical representations"""
+
         feature_dict = {"IsBold": 0, "IsItalic":0, "IsUnderlined":0}
         if record["IsBold"] == True:
             feature_dict["IsBold"] = 1

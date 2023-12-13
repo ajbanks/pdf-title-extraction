@@ -22,7 +22,7 @@ class Title_Detection_Model:
         self.all_extractors = [self.binary_extractor, self.pdf_loc_feature_extractor, self.text_embedding_extractor]
 
     def extract_features_from_record(self, record):
-        """use feature extrctors to extract all relevant features from a record and combine in numpy array"""
+        """use feature extractors to extract all relevant features from a record and combine in numpy array"""
 
         concatenated_features = np.array([])
         for extractor in self.all_extractors:
@@ -36,6 +36,7 @@ class Title_Detection_Model:
         return dataset_dict
 
     def create_feature_dataset(self, df):
+        """Convert a train or test dataset into a feature set of numerical representations"""
         output_list = []
 
         for id, record in df.iterrows():
@@ -45,16 +46,17 @@ class Title_Detection_Model:
 
 
     def train_MLP(self, feature_dataset):
-
+        """Train a multi layer pereceptron on a feature set of numerical representations"""
         X, y = make_classification(n_samples=100, random_state=1)
         clf = MLPClassifier(random_state=1, max_iter=300).fit(feature_dataset["x"], feature_dataset["y"])
         return clf
 
     def predict_model(self, feature_set, clf):
+        """Predict model on feature set"""
         return clf.predict(feature_set)
 
     def evaluate_model(self, test_feature_dataset, clf):
-        # score = clf.score(test_feature_dataset["x"], test_feature_dataset["y"])
+        """Evaluate the model on a feature set. Returns a classification report detailing F1 and accuracy"""
         preds = self.predict_model(test_feature_dataset["x"], clf)
         classification_rep = classification_report(test_feature_dataset["y"], preds)
 
@@ -62,7 +64,7 @@ class Title_Detection_Model:
 
 
     def end_to_end_training(self):
-
+        """Performs end to end training of an mlp model. loades dataset, processes data and evaluates the model"""
         _logger.info("loading dataset")
         dataset_dict = self.load_datasets()
         _logger.info(" dataset loaded")
