@@ -1,7 +1,7 @@
 from sentence_transformers import SentenceTransformer, util
 import numpy as np
-
-
+from feature_extractors.feature_extractor import Extractor
+from typing import List, Tuple, Dict
 
 
 class Embedding_Extractor(Extractor):

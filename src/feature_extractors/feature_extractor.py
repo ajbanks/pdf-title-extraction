@@ -1,5 +1,5 @@
 # Given a list of claims and a list of sentences, return a list of extract features for each
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 import pandas as pd
 import numpy as np
 import logging

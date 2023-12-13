@@ -1,0 +1,6 @@
+pandas
+tokenizers==0.15.0
+sentence-transformers
+tiktoken
+numpy
+scikit-learn

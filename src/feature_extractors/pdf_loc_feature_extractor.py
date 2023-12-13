@@ -1,4 +1,6 @@
 import numpy as np
+from feature_extractors.feature_extractor import Extractor
+from typing import List, Tuple, Dict
 
 class PDF_Loc_Feature_Extractor(Extractor):
 
