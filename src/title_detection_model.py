@@ -21,7 +21,7 @@ class Title_Detection_Model:
         self.text_embedding_extractor = Embedding_Extractor()
         self.all_extractors = [self.binary_extractor, self.pdf_loc_feature_extractor, self.text_embedding_extractor]
 
-    def extract_features_from_record(self, record):
+    def extract_features_from_record(self, record: Dict) -> np.array:
         """use feature extractors to extract all relevant features from a record and combine in numpy array"""
 
         concatenated_features = np.array([])
