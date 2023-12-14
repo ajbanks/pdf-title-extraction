@@ -64,11 +64,17 @@ class Title_Detection_Model:
 
         """
         output_list = []
+        labels = [0] * len(df)
+
+        # check if there is a label column in the record
+        if "Label" in df:
+            #3 if there's a label column use the labels provided
+            labels = df["Label"].values
 
         for id, record in df.iterrows():
             output_list.append(self.extract_features_from_record(record))
 
-        return {"x":output_list, "y": df["Label"].values}
+        return {"x":output_list, "y": labels}
 
 
     def train_MLP(self, feature_dataset):
