@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+dynamic = ["dependencies"]
+name = "titleextraction"
+version = "0.0.1"
+authors = [
+  { name="Alex Joseph", email="alexander.joseph94@gmail.com" },
+]
+description = "A small package to train and use a model to identify titles"
+readme = "README.md"
+requires-python = ">=3.11.5"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}

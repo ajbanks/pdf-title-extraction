@@ -8,6 +8,7 @@ from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 from joblib import dump, load
 from sklearn.metrics import classification_report
+from typing import List, Tuple, Dict
 
 import logging
 _logger = logging.getLogger("my-logger")
