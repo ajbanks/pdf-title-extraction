@@ -11,7 +11,7 @@ from sklearn.metrics import classification_report
 from typing import List, Tuple, Dict
 
 import logging
-_logger = logging.getLogger("my-logger")
+_logger = logging.getLogger("title-extraction-logger")
 logging.basicConfig(level=logging.INFO)
 
 class Title_Detection_Model:
@@ -36,7 +36,7 @@ class Title_Detection_Model:
                         "test": pd.read_csv("data/test_sections_data.csv", header=0, encoding='unicode_escape').sample(frac=1).reset_index(drop=True)}
         return dataset_dict
 
-    def create_feature_dataset(self, df):
+    def create_feature_dataset(self, df) -> Dict:
         """Convert a train or test dataset into a feature set of numerical representations"""
         output_list = []
 
@@ -47,21 +47,23 @@ class Title_Detection_Model:
 
 
     def train_MLP(self, feature_dataset):
-        """Train a multi layer pereceptron on a feature set of numerical representations"""
-        X, y = make_classification(n_samples=100, random_state=1)
-        clf = MLPClassifier(random_state=1, max_iter=300).fit(feature_dataset["x"], feature_dataset["y"])
+        """Train a multi layer perceptron on a feature set of numerical representations"""
+        clf = MLPClassifier(random_state=42, max_iter=300).fit(feature_dataset["x"], feature_dataset["y"])
         return clf
 
     def predict_model(self, feature_set, clf):
         """Predict model on feature set"""
         return clf.predict(feature_set)
 
-    def evaluate_model(self, test_feature_dataset, clf):
-        """Evaluate the model on a feature set. Returns a classification report detailing F1 and accuracy"""
+    def evaluate_model(self, test_feature_dataset, clf) -> str:
+        """Evaluate the model on a feature set. Returns a classification report detailing F1 and accuracy
+            returns:
+                F1 classification report: str
+        """
         preds = self.predict_model(test_feature_dataset["x"], clf)
         classification_rep = classification_report(test_feature_dataset["y"], preds)
 
-        return classification_rep
+        return str(classification_rep)
 
 
     def end_to_end_training(self):
