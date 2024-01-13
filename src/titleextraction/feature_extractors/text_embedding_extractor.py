@@ -13,7 +13,7 @@ class Embedding_Extractor(Extractor):
 
     def embedder(self, text: str) -> np.array:
         """converts text in to a sentence embedding representation"""
-        text_embedding = self.embedding_model.encode('How big is London')
+        text_embedding = self.embedding_model.encode(text)
         return text_embedding
 
     def extract_feature(self, record: Dict) -> np.array:
